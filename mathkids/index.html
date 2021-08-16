@@ -34,7 +34,7 @@
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
   <script>
-    var serviceWorkerVersion = '2216785791';
+    var serviceWorkerVersion = '4268008358';
     var scriptLoaded = false;
     function loadMainDartJs() {
       if (scriptLoaded) {
@@ -42,14 +42,11 @@
       }
       scriptLoaded = true;
       var scriptTag = document.createElement('script');
-      scriptTag.src = 'main.dart.js';
+      scriptTag.src = 'main.dart.js?build=2021150801';
       scriptTag.type = 'application/javascript';
       document.body.append(scriptTag);
     }
-
-    
-      // Service workers not supported. Just drop the <script> tag.
-      loadMainDartJs();
+    loadMainDartJs();
     
   </script>
 </body>
