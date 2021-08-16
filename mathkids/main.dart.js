@@ -66527,7 +66527,7 @@ this.d=Z.SO(C.aF)
 this.ho()},
 n(a){this.bo(0)
 this.gec()},
-C4(a){if(a==="m1_1_chon_manh_ghep/Option3.png")this.ar(new V.a7E(this))
+C4(a){if(a==="assets/m1_1_chon_manh_ghep/Option3.png")this.ar(new V.a7E(this))
 else $.c2().qs()},
 C1(a){var s
 if(this.Q===3){s=this.gec()
@@ -66536,7 +66536,7 @@ s.aL()
 $.c2().nf()}},
 ho(){this.ar(new V.a7F(this))},
 iw(a,b){var s,r,q,p,o,n=this
-if(a!=="m1_1_chon_manh_ghep/Option3.png"){s=$.all[b]
+if(a!=="assets/m1_1_chon_manh_ghep/Option3.png"){s=$.all[b]
 return O.HL(n.dx[b],"("+(b+1)+")",140,!1,!0,s,n.gn5(n),n.gn8(),420,153)}else{s=n.Q
 r=s===3
 q=r?128:420
@@ -66616,7 +66616,7 @@ s=p?125:160
 return O.HL(r.db[b],"("+(b+1)+")",s,!0,!p,q,r.gn5(r),r.gn8(),o,125)},
 R(a,b){var s,r,q,p,o,n,m,l,k,j=this,i=null
 j.z=new M.pN(j.Q,j.glz(),i)
-j.e=O.HL("m1_2_order_rotate/1.jpg","",125,!1,!1,30,j.gn5(j),j.gn8(),150,125)
+j.e=O.HL("assets/m1_2_order_rotate/1.jpg","",125,!1,!1,30,j.gn5(j),j.gn8(),150,125)
 s=j.db
 j.f=j.iw(s[0],0)
 j.r=j.iw(s[1],1)
