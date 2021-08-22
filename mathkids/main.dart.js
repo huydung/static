@@ -65214,7 +65214,7 @@ m=p.d
 m.vi(p.BM("correct",3))
 m.vg(C.ek)
 p=p.e
-p.vi("assets/sound/cheer.mp3")
+p.vi("assets/assets/sound/cheer.mp3")
 p.vg(C.ek)
 P.bp("Set the bound of game canvas into "+H.e($.br)+" x "+H.e($.c4))
 $.aH().toString
@@ -65985,10 +65985,10 @@ a.cZ(0,new P.t(0.863*s,q),new P.t(0.854*s,p),n)},
 ix:function(a){return!1}}
 A.CM.prototype={
 BM:function(a,b){var s=C.bX.kC(b)
-return"assets/sound/"+a+(s+1)+".mp3"},
+return"assets/assets/sound/"+a+(s+1)+".mp3"},
 is:function(a){var s=C.bX.kC(3)+1,r=a?"win":"lose"
 P.bp("Showing image assets/"+r+s+".gif")
-return"assets/"+r+s+".gif"},
+return"assets/assets/"+r+s+".gif"},
 a5P:function(a){var s,r=new A.Uq(),q=a.a,p=q/2,o=p/2.5,n=r.$1(72),m=n/2,l=P.dG(),k=r.$1(360)
 l.dR(0,q,p)
 for(s=0;s<k;s+=n){l.c9(0,p+p*Math.cos(s),p+p*Math.sin(s))
@@ -66110,7 +66110,7 @@ $S:7}
 Z.DA.prototype={
 K:function(a,b){var s=null,r=$.dp()*2
 $.aH().toString
-return new T.ce(C.lS,s,s,new T.by(new V.am(r,r,r,r),D.kb(s,U.hA("MathKids.png",C.p,s,s,s,!1,C.a3,s,s,!1,s,s,!1,s,C.U,s,s,0.125*$.br),C.aa,!1,s,s,s,s,s,s,s,s,s,s,new Z.Wi(b),s,s,s,s,s),s),s)}}
+return new T.ce(C.lS,s,s,new T.by(new V.am(r,r,r,r),D.kb(s,U.hA("assets/MathKids.png",C.p,s,s,s,!1,C.a3,s,s,!1,s,s,!1,s,C.U,s,s,0.125*$.br),C.aa,!1,s,s,s,s,s,s,s,s,s,s,new Z.Wi(b),s,s,s,s,s),s),s)}}
 Z.Wi.prototype={
 $0:function(){K.adl(this.a)},
 $S:0}
