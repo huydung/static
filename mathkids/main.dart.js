@@ -65669,7 +65669,7 @@ a4a:function(){var s=this,r=s.r,q=C.c.al(r[1]*100/r[0]),p=s.a.c.cy?C.c.al(r[2]*1
 P.bp("Answered "+p+" versus "+q+" Given")
 if(q===p)s.X(new E.a5W(s))
 else s.X(new E.a5X(s))},
-K:function(a,b){var s,r,q,p,o,n,m,l,k,j,i=this,h=null,g=i.f,f=new M.hX(g,i.geT(),!0,h)
+K:function(a,b){var s,r,q,p,o,n,m,l,k,j,i=this,h=null,g=i.f,f=new M.hX(g,i.geT(),!1,h)
 i.e=f
 s=i.a.c
 $.aH().toString
@@ -65684,7 +65684,7 @@ l=$.dp()
 k=T.c7(h,l*2,h)
 l=L.dj(D.l7(L.CR(C.q8),new T.by(new V.am(l,l,l,l),L.d_("Ki\u1ec3m tra k\u1ebft qu\u1ea3",h,h,$.zZ(),h,h),h),i.ga49(),h),g<3)
 j=t.D
-r=M.dW(h,T.iz(H.a([o,n,m,p,k,l,L.dj(f,g>=3)],j),C.af,C.bq),h,h,q,h,h,r)
+r=M.dW(h,T.iz(H.a([o,n,m,p,k,l,L.dj(f,g>3)],j),C.af,C.bq),h,h,q,h,h,r)
 q=i.f
 g=$.dp()
 f=q===5?i.y:i.x
