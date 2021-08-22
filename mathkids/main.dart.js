@@ -65988,7 +65988,7 @@ BM:function(a,b){var s=C.bX.kC(b)
 return"assets/assets/sound/"+a+(s+1)+".mp3"},
 is:function(a){var s=C.bX.kC(3)+1,r=a?"win":"lose"
 P.bp("Showing image assets/"+r+s+".gif")
-return"assets/assets/"+r+s+".gif"},
+return"assets/"+r+s+".gif"},
 a5P:function(a){var s,r=new A.Uq(),q=a.a,p=q/2,o=p/2.5,n=r.$1(72),m=n/2,l=P.dG(),k=r.$1(360)
 l.dR(0,q,p)
 for(s=0;s<k;s+=n){l.c9(0,p+p*Math.cos(s),p+p*Math.sin(s))
