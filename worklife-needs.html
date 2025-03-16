@@ -29,12 +29,12 @@
             flex-direction: row;
             justify-content: center;
             width: 100%;
-            max-width: 1000px;
+            max-width: 1200px;
             gap: 20px;
         }
         
         .sliders-container {
-            width: 25%;
+            width: 20%;
             background-color: rgba(255, 255, 255, 0.7);
             padding: 15px;
             border-radius: 15px;
@@ -49,6 +49,16 @@
             align-items: center;
             min-height: 500px;
             position: relative;
+            width: 45%;
+        }
+        
+        .form-container {
+            width: 25%;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
         }
         
         .slider-group {
@@ -173,23 +183,49 @@
             color: #a94442;
         }
         
+        .thank-you {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .thank-you h3 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+        
+        .thank-you p {
+            color: #444;
+            margin-bottom: 10px;
+        }
+        
         @media (max-width: 768px) {
             .main-container {
                 flex-direction: column;
                 align-items: center;
-                gap: 10px;
+                gap: 15px;
             }
             
             .sliders-container {
                 width: 90%;
                 max-width: 100%;
-                margin-bottom: 10px;
+                margin-bottom: 0;
                 padding: 10px;
             }
             
             .flower-container {
                 width: 100%;
                 min-height: 350px;
+                order: 2;
+            }
+            
+            .form-container {
+                width: 90%;
+                max-width: 100%;
+                padding: 10px;
+                order: 3;
             }
             
             h1 {
@@ -274,7 +310,11 @@
                 </div>
                 <input type="range" min="-2" max="3" value="0" class="slider" id="slider5">
             </div>
-            
+        </div>
+        
+        <div class="flower-container" id="flowerContainer"></div>
+        
+        <div class="form-container">
             <div class="form-section">
                 <h3>Share Your Results</h3>
                 <form id="resultsForm">
@@ -348,8 +388,6 @@
                 <div id="submissionStatus"></div>
             </div>
         </div>
-        
-        <div class="flower-container" id="flowerContainer"></div>
     </div>
 
     <script>
@@ -367,7 +405,7 @@
             { name: "Authenticity, Values & Autonomy", emoji: "🧭", color: "#FF7F50", angle: -18 },
             { name: "Impact & Meaningful Contribution", emoji: "✨", color: "#4CAF50", angle: 54 },
             { name: "Connection, Community & Recognition", emoji: "👥", color: "#5B9BD5", angle: 126 },
-            { name: "Growth, Mastery & Future Orientation", emoji: "📈", color: "#9370DB", angle: 198 }
+            { name: "Growth, Mastery & Future Orientation", emoji: "🚀", color: "#9370DB", angle: 198 }
         ];
 
         // Create the SVG element
@@ -480,26 +518,23 @@
             }
             
             // Add emoji near the end of the petal, outside but close to the tip
-            if (emoji) {
-                // Position emoji outside but close to the tip of the petal
-                const emojiDistance = length * 1.1; // Just beyond the petal tip
-                const emojiX = centerX + emojiDistance * Math.cos(angle * Math.PI / 180);
-                const emojiY = centerY + emojiDistance * Math.sin(angle * Math.PI / 180);
-                
-                const foreignObject = document.createElementNS("http://www.w3.org/2000/svg", "foreignObject");
-                foreignObject.setAttribute("x", emojiX - 15);
-                foreignObject.setAttribute("y", emojiY - 15);
-                foreignObject.setAttribute("width", "30");
-                foreignObject.setAttribute("height", "30");
-                
-                const emojiDiv = document.createElement("div");
-                emojiDiv.style.textAlign = "center";
-                emojiDiv.style.fontSize = "20px";
-                emojiDiv.innerHTML = emoji;
-                
-                foreignObject.appendChild(emojiDiv);
-                svg.appendChild(foreignObject);
-            }
+            const emojiDistance = length * 1.1; // Just beyond the petal tip
+            const emojiX = centerX + emojiDistance * Math.cos(angle * Math.PI / 180);
+            const emojiY = centerY + emojiDistance * Math.sin(angle * Math.PI / 180);
+            
+            const foreignObject = document.createElementNS("http://www.w3.org/2000/svg", "foreignObject");
+            foreignObject.setAttribute("x", emojiX - 15);
+            foreignObject.setAttribute("y", emojiY - 15);
+            foreignObject.setAttribute("width", "30");
+            foreignObject.setAttribute("height", "30");
+            
+            const emojiDiv = document.createElement("div");
+            emojiDiv.style.textAlign = "center";
+            emojiDiv.style.fontSize = "20px";
+            emojiDiv.innerHTML = emoji;
+            
+            foreignObject.appendChild(emojiDiv);
+            svg.appendChild(foreignObject);
         };
 
         // Draw a damage hole in the pistil - now using background color and irregular shape
@@ -634,6 +669,9 @@
                     const petalWidth = value / 3;
                     
                     drawPetal(svg, needs[index].angle, petalLength, petalWidth, needs[index].color, needs[index].emoji);
+                } else {
+                    // Still draw the emoji even if no petal is visible (for values 0, -1, -2)
+                    drawEmojiOnly(svg, needs[index].angle, needs[index].emoji);
                 }
             });
             
@@ -646,6 +684,28 @@
                     drawDamage(svg, needs[index].angle, value);
                 }
             });
+        };
+        
+        // Function to draw just the emoji without a petal
+        const drawEmojiOnly = (svg, angle, emoji) => {
+            // Position emoji near the pistil
+            const emojiDistance = pistilRadius * 1.4; // Just outside the pistil
+            const emojiX = centerX + emojiDistance * Math.cos(angle * Math.PI / 180);
+            const emojiY = centerY + emojiDistance * Math.sin(angle * Math.PI / 180);
+            
+            const foreignObject = document.createElementNS("http://www.w3.org/2000/svg", "foreignObject");
+            foreignObject.setAttribute("x", emojiX - 15);
+            foreignObject.setAttribute("y", emojiY - 15);
+            foreignObject.setAttribute("width", "30");
+            foreignObject.setAttribute("height", "30");
+            
+            const emojiDiv = document.createElement("div");
+            emojiDiv.style.textAlign = "center";
+            emojiDiv.style.fontSize = "20px";
+            emojiDiv.innerHTML = emoji;
+            
+            foreignObject.appendChild(emojiDiv);
+            svg.appendChild(foreignObject);
         };
         
         // Draw the ground/grass - simplified version
@@ -815,15 +875,29 @@
             const form = document.getElementById('resultsForm');
             const submitButton = document.getElementById('submitButton');
             const statusDiv = document.getElementById('submissionStatus');
+            const formSection = document.querySelector('.form-section');
             
             form.addEventListener('submit', function(event) {
                 event.preventDefault();
                 
-                // Get all values
+                // Validate form fields
                 const seniority = document.getElementById('seniority').value;
                 const jobProfile = document.getElementById('jobProfile').value;
-                const sliderValues = [];
                 
+                if (!seniority || !jobProfile) {
+                    statusDiv.textContent = 'Please fill in all fields before submitting.';
+                    statusDiv.className = 'error';
+                    statusDiv.style.display = 'block';
+                    
+                    setTimeout(function() {
+                        statusDiv.style.display = 'none';
+                    }, 3000);
+                    
+                    return;
+                }
+                
+                // Get all values
+                const sliderValues = [];
                 for (let i = 1; i <= 5; i++) {
                     sliderValues.push(document.getElementById(`slider${i}`).value);
                 }
@@ -839,7 +913,7 @@
                     jobProfile: jobProfile,
                     livelihood: sliderValues[0],
                     community: sliderValues[1],
-                    integrity: sliderValues[2],
+                    integrity: sliderValues[2], 
                     significant: sliderValues[3],
                     advancement: sliderValues[4]
                 };
@@ -847,23 +921,20 @@
                 // Submit to Google Sheets via AppScript
                 submitToGoogleSheets(formData, function(success, message) {
                     if (success) {
-                        statusDiv.textContent = 'Thank you! Your results have been submitted.';
-                        statusDiv.className = 'success';
-                        form.reset();
+                        // Replace form with thank you message
+                        formSection.innerHTML = `
+                            <div class="thank-you">
+                                <h3>Thank You!</h3>
+                                <p>Your results have been submitted successfully.</p>
+                                <p>Thank you for participating in our research.</p>
+                            </div>
+                        `;
                     } else {
-                        statusDiv.textContent = 'Error submitting results. Please try again later.';
+                        statusDiv.textContent = 'Error submitting results: ' + message;
                         statusDiv.className = 'error';
-                    }
-                    
-                    statusDiv.style.display = 'block';
-                    submitButton.disabled = false;
-                    submitButton.textContent = 'Submit Results';
-                    
-                    // Hide status after 5 seconds if successful
-                    if (success) {
-                        setTimeout(function() {
-                            statusDiv.style.display = 'none';
-                        }, 5000);
+                        statusDiv.style.display = 'block';
+                        submitButton.disabled = false;
+                        submitButton.textContent = 'Submit Results';
                     }
                 });
             });
@@ -871,8 +942,11 @@
         
         // Function to submit data to Google Sheets via AppScript
         function submitToGoogleSheets(data, callback) {
+            // Log the data being sent for debugging
+            console.log('Sending data to Google Sheets:', data);
+            
             // Real Google Apps Script Web App URL
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbxPUyqKUwH6ke-R57tvAK2sBShm2bFvVqybkOtZoGkcWfldJfY3MYjA8ofQK6DZZ-Bk/exec';
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbxEU3iboQRTFZj49H3s3Y0RmBwBtENE6iflbk6aZL6c41UnfzMER2hGOyopBfA7czVY/exec';
             
             fetch(scriptURL, {
                 method: 'POST',
