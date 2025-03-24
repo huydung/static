@@ -278,22 +278,22 @@
                 </div>
                 <input type="range" min="-2" max="3" value="0" class="slider" id="slider1">
             </div>
-            
-            <div class="slider-group">
-                <div class="slider-label">
-                    <span class="emoji">👥</span>
-                    <span>Community</span>
-                </div>
-                <input type="range" min="-2" max="3" value="0" class="slider" id="slider2">
-            </div>
-            
             <div class="slider-group">
                 <div class="slider-label">
                     <span class="emoji">🧭</span>
                     <span>Integrity</span>
                 </div>
+                <input type="range" min="-2" max="3" value="0" class="slider" id="slider2">
+            </div>
+            <div class="slider-group">
+                <div class="slider-label">
+                    <span class="emoji">👥</span>
+                    <span>Connection</span>
+                </div>
                 <input type="range" min="-2" max="3" value="0" class="slider" id="slider3">
             </div>
+            
+            
             
             <div class="slider-group">
                 <div class="slider-label">
@@ -306,7 +306,7 @@
             <div class="slider-group">
                 <div class="slider-label">
                     <span class="emoji">🚀</span>
-                    <span>Advancement</span>
+                    <span>Progression</span>
                 </div>
                 <input type="range" min="-2" max="3" value="0" class="slider" id="slider5">
             </div>
@@ -333,50 +333,7 @@
                     
                     <div class="form-group">
                         <label for="jobProfile">Job Title/Role</label>
-                        <input type="text" id="jobProfile" name="jobProfile" list="jobSuggestions" placeholder="Enter your job title" required>
-                        <datalist id="jobSuggestions">
-                            <!-- English job titles -->
-                            <option value="Accountant">
-                            <option value="Administrative Assistant">
-                            <option value="Business Analyst">
-                            <option value="CEO">
-                            <option value="Content Creator">
-                            <option value="Data Analyst">
-                            <option value="Digital Marketer">
-                            <option value="Engineer">
-                            <option value="Financial Analyst">
-                            <option value="Graphic Designer">
-                            <option value="HR Manager">
-                            <option value="IT Support">
-                            <option value="Marketing Manager">
-                            <option value="Product Manager">
-                            <option value="Project Manager">
-                            <option value="Sales Representative">
-                            <option value="Software Developer">
-                            <option value="Teacher">
-                            <option value="UX/UI Designer">
-                            
-                            <!-- Vietnamese job titles -->
-                            <option value="Kế toán viên">
-                            <option value="Trợ lý hành chính">
-                            <option value="Chuyên viên phân tích kinh doanh">
-                            <option value="Giám đốc điều hành">
-                            <option value="Người sáng tạo nội dung">
-                            <option value="Chuyên viên phân tích dữ liệu">
-                            <option value="Chuyên viên tiếp thị số">
-                            <option value="Kỹ sư">
-                            <option value="Chuyên viên phân tích tài chính">
-                            <option value="Nhà thiết kế đồ họa">
-                            <option value="Giám đốc nhân sự">
-                            <option value="Hỗ trợ CNTT">
-                            <option value="Giám đốc tiếp thị">
-                            <option value="Giám đốc sản phẩm">
-                            <option value="Giám đốc dự án">
-                            <option value="Nhân viên kinh doanh">
-                            <option value="Lập trình viên">
-                            <option value="Giáo viên">
-                            <option value="Nhà thiết kế UX/UI">
-                        </datalist>
+                        <input type="text" id="jobProfile" name="jobProfile" placeholder="Enter your job title" required>
                     </div>
                     
                     <div class="disclaimer">
@@ -401,11 +358,11 @@
         
         // Needs categories with their data
         const needs = [
-            { name: "Livelihood", emoji: "💰", color: "#FFD700", angle: -90 },
-            { name: "Community", emoji: "👥", color: "#FF7F50", angle: -18 },
-            { name: "Integrity", emoji: "🧭", color: "#4CAF50", angle: 54 },
-            { name: "Significant", emoji: "✨", color: "#5B9BD5", angle: 126 },
-            { name: "Advancement", emoji: "🚀", color: "#9370DB", angle: 198 }
+            { name: "Economic Security & Stability", emoji: "💰", color: "#FFD700", angle: 126 },
+            { name: "Authenticity, Values & Autonomy", emoji: "🧭", color: "#FF7F50", angle: -18 },
+            { name: "Connection, Community & Recognition", emoji: "👥", color: "#5B9BD5", angle: -90 },
+            { name: "Impact & Meaningful Contribution", emoji: "✨", color: "#4CAF50", angle: 54 },            
+            { name: "Growth, Mastery & Future Orientation", emoji: "📈", color: "#9370DB", angle: 198 }
         ];
 
         // Create the SVG element
@@ -736,13 +693,13 @@
             }
             defs.appendChild(gradient);
             
-            // Draw a simple curved ground
+            // Draw a thicker curved ground
             const groundPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
             
-            // Define a simple curved path for the ground
+            // Define a simple curved path for the ground with more height
             // Starting from left edge, curving up in the middle, then down to right edge
-            const groundY = svgHeight - 30;
-            const curveHeight = 20;
+            const groundY = svgHeight - 50; // Higher start point for a thicker ground
+            const curveHeight = 30; // Increased curve height
             
             const pathD = `
                 M 0,${svgHeight}
@@ -755,6 +712,41 @@
             groundPath.setAttribute("d", pathD);
             groundPath.setAttribute("fill", `url(#${gradientId})`);
             svg.appendChild(groundPath);
+            
+            // Add job title text if available
+            const jobProfile = document.getElementById('jobProfile').value.trim();
+            const seniority = document.getElementById('seniority').value;
+            
+            if (jobProfile || seniority) {
+                let displayText = "";
+                
+                if (jobProfile) {
+                    displayText += jobProfile.toUpperCase();
+                    
+                    if (seniority) {
+                        displayText += ` (${seniority} xp)`;
+                    }
+                } else if (seniority) {
+                    displayText = seniority;
+                }
+                
+                if (displayText) {
+                    const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+                    text.setAttribute("x", svgWidth / 2);
+                    text.setAttribute("y", svgHeight - 20); // Positioned lower, clearly on the grass
+                    text.setAttribute("text-anchor", "middle");
+                    text.setAttribute("fill", "white");
+                    text.setAttribute("font-size", "16px");
+                    text.setAttribute("font-weight", "bold");
+                    text.setAttribute("font-family", "Arial, sans-serif");
+                    text.textContent = displayText;
+                    
+                    // Add a shadow effect for better visibility
+                    text.setAttribute("filter", "drop-shadow(0px 1px 1px rgba(0,0,0,0.7))");
+                    
+                    svg.appendChild(text);
+                }
+            }
         };
         
         // Draw the stem (trunk only - no leaves)
@@ -843,8 +835,9 @@
             return `#${(r << 16 | g << 8 | b).toString(16).padStart(6, '0')}`;
         }
 
-        // Setup event listeners for sliders
+        // Setup event listeners for sliders and form fields
         function setupSliders() {
+            // Set up sliders
             for (let i = 1; i <= 5; i++) {
                 const slider = document.getElementById(`slider${i}`);
                 
@@ -856,6 +849,13 @@
                     updateSliderColor(this);
                 });
             }
+            
+            // Set up form field live updates
+            const jobProfileInput = document.getElementById('jobProfile');
+            const senioritySelect = document.getElementById('seniority');
+            
+            jobProfileInput.addEventListener('input', drawFlower);
+            senioritySelect.addEventListener('change', drawFlower);
         }
         
         // Update slider color based on its value
@@ -912,10 +912,10 @@
                     seniority: seniority,
                     jobProfile: jobProfile,
                     livelihood: sliderValues[0],
-                    community: sliderValues[1],
+                    connection: sliderValues[1],
                     integrity: sliderValues[2], 
                     significant: sliderValues[3],
-                    advancement: sliderValues[4]
+                    progression: sliderValues[4]
                 };
                 
                 // Submit to Google Sheets via AppScript
